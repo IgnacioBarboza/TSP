@@ -1,0 +1,12 @@
+# Ignorar archivos compilados
+*.class
+bin/
+out/
+target/
+
+# Ignorar configuraciones del IDE (si usás IntelliJ, Eclipse o VS Code)
+.idea/
+*.iml
+.classpath
+.project
+.vscode/
