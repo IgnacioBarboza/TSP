@@ -1,0 +1,42 @@
+1. El ciclo de trabajo diario (Lo que vas a usar el 90% del tiempo)
+git status: ¡Tu mejor amigo! Te dice exactamente qué archivos modificaste, cuáles están listos para guardarse y en qué rama estás. Usalo todo el tiempo.
+
+git add .: Prepara todos los archivos modificados en la carpeta actual para ser guardados (los pasa a un área temporal llamada Staging Area).
+
+git add NombreDelArchivo.java: Igual que el anterior, pero solo prepara un archivo específico.
+
+git commit -m "Tu mensaje aquí": Guarda los cambios preparados en tu historial local. El mensaje debe ser claro. Ej: git commit -m "Agregada la Selección por Ruleta".
+
+2. Sincronizar con la nube (El "Update" de SVN)
+git pull: Este es el equivalente al svn update. Trae los cambios que estén en el servidor (ej. GitHub) y los fusiona con tu código local.
+
+git push: Sube tus commits locales (tu historial guardado) al servidor remoto.
+
+git fetch: Trae la información del servidor para ver si hay cambios nuevos, pero no toca ni modifica tus archivos locales (ideal para chusmear antes de hacer un pull).
+
+3. Ver la historia y los cambios (Logs)
+git log: Muestra el historial completo de commits (quién lo hizo, cuándo y el mensaje). Para salir de esta vista apretá la letra q.
+
+git log --oneline: Te muestra el historial pero resumido, un commit por línea. ¡Súper útil cuando tenés muchos cambios!
+
+git diff: Te muestra línea por línea, en verde y rojo, qué código agregaste o borraste en los archivos antes de hacer un commit.
+
+4. Ramas (Branches) - Para hacer experimentos seguros
+Imaginá que querés programar el Cruce PMX pero tenés miedo de romper la Ruleta que ya anda perfecto. Usás ramas.
+
+git branch: Lista todas las ramas que existen en tu proyecto.
+
+git branch nombre-de-rama: Crea una rama nueva (ej: git branch prueba-cruce-pmx).
+
+git switch nombre-de-rama (o git checkout nombre-de-rama): Te cambia a esa rama. A partir de acá, todo lo que programes no afecta a la rama principal (suele llamarse main o master).
+
+git switch -c nombre-de-rama: Crea la rama y te cambia a ella en un solo comando (muy práctico).
+
+git merge nombre-de-rama: Si tu experimento en la rama funcionó bárbaro, volvés a la rama principal (git switch main) y ejecutás este comando para "fusionar" o traer los cambios de la rama experimental a la principal.
+
+5. ¡Me mandé una macana! (Deshacer cambios)
+git restore NombreDelArchivo.java: Si modificaste un archivo, no anda nada, y querés volver a como estaba en el último commit (descarta los cambios no guardados).
+
+git reset HEAD~1: Deshace tu último commit pero deja los archivos modificados en tu carpeta para que los puedas corregir.
+
+git revert <codigo-del-commit>: En vez de borrar la historia, crea un "commit inverso" que deshace lo que hizo un commit viejo. Es la forma más segura de deshacer cosas si ya habías subido el código a GitHub.

@@ -23,6 +23,8 @@ public class Solucion {
         this.Fitness = calcularFitness(costos);
     }
 
+     public Solucion() {}
+
     //--------------------------------------Métodos---------------------------------------
     
     public double getFitness() {

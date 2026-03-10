@@ -14,7 +14,23 @@ public class Poblacion {
         // Inicializamos la Lista. Ya no necesitamos la variable 'indice'
         this.soluciones = new ArrayList<>(); 
     }
+    //--------------------------Métodos de Ordenamiento-------------------------------
 
+    public void ordenarPorFitnessMenorAMayor() {
+        this.soluciones.sort(Comparator.comparingDouble(Solucion::getFitness));
+    }
+
+    public void ordenarPorFitnessMayorAMenor() {
+        this.soluciones.sort(Comparator.comparingDouble(Solucion::getFitness).reversed());
+    }
+
+    public void ordenarPorFitnessInvertidoMayorAMenor() {
+        this.soluciones.sort(Comparator.comparingDouble((Solucion s) -> 1.0 / s.getFitness()).reversed());
+    }
+
+    public void ordenarPorFitnessInvertidoMenorAMayor() {
+        this.soluciones.sort(Comparator.comparingDouble((Solucion s) -> 1.0 / s.getFitness()));
+    }
     //--------------------------Métodos-------------------------------
     
     public int getCantidadSoluciones() {
@@ -64,23 +80,5 @@ public class Poblacion {
 
     public Solucion get(int indice){
         return this.soluciones.get(indice);
-    }
-
-    //--------------------------Métodos de Ordenamiento-------------------------------
-
-    public void ordenarPorFitnessMenorAMayor() {
-        this.soluciones.sort(Comparator.comparingDouble(Solucion::getFitness));
-    }
-
-    public void ordenarPorFitnessMayorAMenor() {
-        this.soluciones.sort(Comparator.comparingDouble(Solucion::getFitness).reversed());
-    }
-
-    public void ordenarPorFitnessInvertidoMayorAMenor() {
-        this.soluciones.sort(Comparator.comparingDouble((Solucion s) -> 1.0 / s.getFitness()).reversed());
-    }
-
-    public void ordenarPorFitnessInvertidoMenorAMayor() {
-        this.soluciones.sort(Comparator.comparingDouble((Solucion s) -> 1.0 / s.getFitness()));
     }
 }

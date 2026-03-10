@@ -7,13 +7,15 @@ public class Instancia {
     private int[][] costos;
     private Poblacion poblacion;
     private SeleccionadorPadres selectorPadres;
+    private OperadorCruce operadorCruce;
 
     // --------------------------Constructor-------------------------------
-    public Instancia(int dimensionCostos, int[][] costos, int cantidadSoluciones, SeleccionadorPadres selectorPadres) {
+    public Instancia(int dimensionCostos, int[][] costos, int cantidadSoluciones, SeleccionadorPadres selectorPadres, OperadorCruce operadorCruce) {
         this.dimensionCostos = dimensionCostos;
         this.cantidadSoluciones = cantidadSoluciones;
         this.costos = costos;
         this.selectorPadres = selectorPadres;
+        this.operadorCruce = operadorCruce;
     }
     // --------------------------Métodos-------------------------------
 
@@ -37,6 +39,10 @@ public class Instancia {
         return cantidadSoluciones;
     }
 
+    public List<Solucion> getHijos(List<Solucion> padres){
+        return operadorCruce.generarHijos(padres, cantidadSoluciones, costos);
+    }
+
     private void inicializar() {
         this.poblacion = new Poblacion(cantidadSoluciones);
         this.poblacion.llenarRandom(costos);
@@ -57,12 +63,12 @@ public class Instancia {
                 { 19, 12, 53, 25, 66, 48, 90, 39, 71, 0 }
         };
         int tamanio = 10; // Tamaño de la población
-        int tamañotorneo = 20; // Cuantas veces comparo el ganador del torneo? Mayor = más selectivo y Menor =
+        int tamañotorneo = 5; // Cuantas veces comparo el ganador del torneo? Mayor = más selectivo y Menor =
                                // más aleatorio
         int cantidadSoluciones = 10; // Cantidad de soluciones en la población
         int cantidadPadres = 10; // Cantidad de padres que queremos seleccionar
         Instancia instancia = new Instancia(tamanio, costosPrueba, cantidadSoluciones,
-                new SeleccionRuleta());
+                new SeleccionTorneo(tamañotorneo),new CruceDeOrden());
 
         instancia.inicializar();
         System.out.println("--- Población Inicial ---");
@@ -73,11 +79,20 @@ public class Instancia {
             System.out.println(": Fitness: " + s.getFitness());
         }
 
-        System.out.println("\n--- Padres Seleccionados por Ruleta ---");
+        System.out.println("\n--- Padres Seleccionados por Torneo ---");
 
         List<Solucion> padres = instancia.selectorPadres.seleccionar(instancia.poblacion, cantidadPadres);
 
         for (Solucion s : padres) {
+            s.imprimirCamino();
+            System.out.println(": Fitness: " + s.getFitness());
+        }
+
+        List<Solucion> hijos = instancia.getHijos(padres);
+
+        System.out.println("\n--- Hijos ---");
+
+        for (Solucion s : hijos) {  
             s.imprimirCamino();
             System.out.println(": Fitness: " + s.getFitness());
         }
