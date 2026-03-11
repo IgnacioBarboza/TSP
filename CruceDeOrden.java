@@ -15,13 +15,9 @@ public class CruceDeOrden implements OperadorCruce {
     public List<Solucion> generarHijos(List<Solucion> padres, int cantidadHijos, int[][] costos) {
         List<Solucion> hijos = new ArrayList<>();
         
-        System.out.println("Cantidad de Hijos: " + cantidadHijos);
         for (int i = 0; i < cantidadHijos / 2; i++) {
             Solucion padre1 = padres.get(random.nextInt(padres.size()));
             Solucion padre2 = padres.get(random.nextInt(padres.size()));
-            
-            padre1.imprimirCaminoLn();
-            padre2.imprimirCaminoLn();
             List<Solucion> parDeHijos = cruzar(padre1, padre2, costos);
             hijos.addAll(parDeHijos);
         }
@@ -47,7 +43,6 @@ public class CruceDeOrden implements OperadorCruce {
             inicioCruce = finCruce;
             finCruce = temp;
         }
-        System.out.println( "Inicio Cruce: " + inicioCruce + " Fin Cruce: " + finCruce);
 
         List<Integer> rutaHijo1 = new ArrayList<>();
         List<Integer> rutaHijo2 = new ArrayList<>();

@@ -14,13 +14,13 @@ public class Solucion {
     public Solucion(List<Integer> camino, int[][] costos) {
         this.camino = new ArrayList<>(camino); 
         this.largoCamino = this.camino.size(); 
-        this.Fitness = calcularFitness(costos);
+        recalcularFitness(costos);
     }
 
     public Solucion(int tamanio, int[][] costos) {
         this.largoCamino = tamanio;
         generarCaminoRandom();
-        this.Fitness = calcularFitness(costos);
+        recalcularFitness(costos);
     }
 
      public Solucion() {}
@@ -51,7 +51,7 @@ public class Solucion {
         Collections.swap(this.camino, i, j);
     }
     
-    private double calcularFitness(int[][] costos) {
+    public void recalcularFitness(int[][] costos) {
         double fitness = 0;
         for (int i = 0; i < largoCamino; i++) {
             int origen = camino.get(i);
@@ -59,7 +59,7 @@ public class Solucion {
             
             fitness += costos[origen][destino];
         }
-        return fitness; 
+        this.Fitness = fitness;
     }
 
     public void generarCaminoRandom(){

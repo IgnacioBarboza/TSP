@@ -81,4 +81,10 @@ public class Poblacion {
     public Solucion get(int indice){
         return this.soluciones.get(indice);
     }
+
+    public void mutarSoluciones(Mutador mutador,int[][] costos){
+        for(Solucion s : this.soluciones){
+            mutador.mutar(s,costos);
+        }
+    }
 }
