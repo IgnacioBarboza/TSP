@@ -1,3 +1,4 @@
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -84,5 +85,30 @@ public class Solucion {
         for(int i = 0; i < largoCamino; i++){
             System.out.print(camino.get(i) + " ");
         }
+    }
+    public int getCiudadAnterior(int i){
+        if(i>0) return camino.get(i-1);
+        else return camino.get(largoCamino-1);
+    }
+
+    public int getCiudadPosterior(int i){
+        if(i<largoCamino-1) return camino.get(i+1);
+        else return camino.get(0);
+    }
+
+    public int getCiudad(int i){
+        return camino.get(i);
+    }
+
+    public int getIndice(int ciudad) {
+        if ((ciudad>=largoCamino)||(ciudad<0))
+            throw new InvalidParameterException();
+        else{
+            for (int i = 0; i < largoCamino; i++) {
+                if (ciudad==camino.get(i))
+                    return i;
+            }
+        }
+        return -1;
     }
 }

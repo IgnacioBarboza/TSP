@@ -11,6 +11,11 @@ public class SeleccionRuleta implements SeleccionadorPadres {
     }
 
     @Override
+    public String getNombre() {
+        return "Por Ruleta";
+    }
+
+    @Override
     public List<Solucion> seleccionar(Poblacion poblacion, int cantidadPadres) {
 
         List<Solucion> padresSeleccionados = new ArrayList<>();

@@ -12,7 +12,7 @@ public class Poblacion {
     public Poblacion(int dimension) {
         this.cantidadSoluciones = dimension;
         // Inicializamos la Lista. Ya no necesitamos la variable 'indice'
-        this.soluciones = new ArrayList<>(); 
+        this.soluciones = new ArrayList<>();
     }
     //--------------------------Métodos de Ordenamiento-------------------------------
 

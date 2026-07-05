@@ -1,6 +1,6 @@
 import java.util.List;
 
-public interface SeleccionadorPadres {
+public interface SeleccionadorPadres extends Elemento{
     /**
      * Selecciona una cantidad específica de padres de la población actual.
      * * @param poblacion La lista de soluciones actuales.

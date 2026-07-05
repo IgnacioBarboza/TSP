@@ -12,27 +12,40 @@ public class CruceDeOrden implements OperadorCruce {
     }
 
     @Override
-    public List<Solucion> generarHijos(List<Solucion> padres, int cantidadHijos, int[][] costos) {
+    public String getNombre() {
+        return "Cruce de Orden";
+    }
+
+
+    @Override
+    public List<Solucion> generarHijos(List<Solucion> padres, int tamanioSolucion, int[][] costos) {
         List<Solucion> hijos = new ArrayList<>();
         
-        for (int i = 0; i < cantidadHijos / 2; i++) {
-            Solucion padre1 = padres.get(random.nextInt(padres.size()));
-            Solucion padre2 = padres.get(random.nextInt(padres.size()));
+        for (int i = 0; i < tamanioSolucion / 2; i++) {
+            int indice1 = (i * 2) % padres.size();
+            int indice2 = (i * 2 + 1) % padres.size();
+            
+            Solucion padre1 = padres.get(indice1);
+            Solucion padre2 = padres.get(indice2);
+            
             List<Solucion> parDeHijos = cruzar(padre1, padre2, costos);
             hijos.addAll(parDeHijos);
         }
 
-        // Si la cantidad de hijos pedida era impar, nos falta generar 1 hijo más.
-        // Hacemos un cruce extra y tomamos solo el primer hijo.
-        if (cantidadHijos % 2 != 0) {
-            Solucion padre1 = padres.get(random.nextInt(padres.size()));
-            Solucion padre2 = padres.get(random.nextInt(padres.size()));
+        if (tamanioSolucion % 2 != 0) {
+            int i = tamanioSolucion / 2;
+            int indice1 = (i * 2) % padres.size();
+            int indice2 = (i * 2 + 1) % padres.size();
+            
+            Solucion padre1 = padres.get(indice1);
+            Solucion padre2 = padres.get(indice2);
+            
             hijos.add(cruzar(padre1, padre2, costos).get(0));
         }
 
         return hijos;
     }
-    @Override
+
     public List<Solucion> cruzar(Solucion p1, Solucion p2, int[][] costos) {
         int tamanio = p1.getCamino().size();
         
@@ -52,19 +65,15 @@ public class CruceDeOrden implements OperadorCruce {
             rutaHijo2.add(-1);
         }
 
-        // 3. Agregamos el patron comun de los padres (la franja central)
         for(int i = inicioCruce; i <= finCruce; i++){
             rutaHijo1.set(i, p1.getCamino().get(i));
             rutaHijo2.set(i, p2.getCamino().get(i));
         }
 
-        // 4. Rellenar los huecos (Lógica corregida de OX)
-        // Empezamos a leer y escribir justo después de la franja copiada
         int indiceLectura = (finCruce + 1) % tamanio;
         int indiceEscrituraH1 = (finCruce + 1) % tamanio;
         int indiceEscrituraH2 = (finCruce + 1) % tamanio;
 
-        // Iteramos tantas veces como ciudades haya para dar toda la vuelta
         for(int i = 0; i < tamanio; i++) {
             int indiceActual = (indiceLectura + i) % tamanio;
             

@@ -1,9 +1,8 @@
 import java.util.List;
 
-public interface OperadorCruce {
+public interface OperadorCruce extends Elemento {
     
-    List<Solucion> generarHijos(List<Solucion> padres, int cantidadHijos, int[][] costos);
+    List<Solucion> generarHijos(List<Solucion> padres, int tamanioSolucion, int[][] costos);
 
     
-    abstract List<Solucion> cruzar(Solucion p1, Solucion p2, int[][] costos);
 }

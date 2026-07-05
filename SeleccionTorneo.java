@@ -12,7 +12,10 @@ public class SeleccionTorneo implements SeleccionadorPadres {
         this.tamañoTorneo = tamañoTorneo;
         this.random = new Random();
     }
-
+    @Override
+    public String getNombre(){
+        return "Por Torneo con tamaño de torneo: " + tamañoTorneo + " individuos";
+    }
     @Override
     public List<Solucion> seleccionar(Poblacion poblacion, int cantidadPadres) {
         List<Solucion> padresSeleccionados = new ArrayList<>();
