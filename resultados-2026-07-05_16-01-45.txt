@@ -7,6 +7,8 @@ Fitness mejor solución:    5627.0
 Costo promedio (Población): 5845,68
 Tiempo total de ejecución: 1488.0 ms
 Tiempo promedio por generación: 1,49 ms
+Hola
+
 
 Evolución del Fitness en el tiempoMejor fitness en iteración 1: 11842.0 Diferencia: -16294.0
 Mejor fitness en iteración 2: 11792.0 Diferencia: -11156.0
