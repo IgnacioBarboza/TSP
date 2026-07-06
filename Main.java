@@ -94,6 +94,10 @@ public class Main {
         System.out.print("▶ 2. Ingrese el tamaño de la población (ej. 100): ");
         int cantidadSoluciones = scanner.nextInt();
         
+        // 3. Tamaño de la población
+        System.out.print("▶ 3. Ingrese la cantidad de iteraciones del experimento (ej. 500 o 1000): ");
+        int cantidadIteraciones = scanner.nextInt();
+        
         // 4. Selección de padres
         SeleccionadorPadres selectorPadres = elegirSelectorPadres(scanner);
 
@@ -106,11 +110,11 @@ public class Main {
         // 7. Selección de operador de cruce
         OperadorCruce operadorCruce = elegirOperadorCruce(scanner);
 
-        // --- Resumen visual para el usuario ---
         System.out.println("\n=========================================================");
         System.out.println("   ¡Configuración completada exitosamente!");
         System.out.println("   - Ciudades: " + tamanio);
         System.out.println("   - Población: " + cantidadSoluciones + " individuos");
+        System.out.println("   - Cantidad de Iteraciones: " + cantidadIteraciones);
         System.out.println("   - Selector de Padres: " + selectorPadres.getNombre());
         System.out.println("   - Selector de Sobrevivientes: " + seleccionadorSobrevivientes.getNombre());
         System.out.println("   - Mutador: " + mutador.getNombre());
@@ -120,28 +124,25 @@ public class Main {
         System.out.println("Iniciando la evolución... \n");
 
         Instancia instancia = new Instancia(tamanio, costos, cantidadSoluciones,
-                selectorPadres,operadorCruce,mutador, seleccionadorSobrevivientes);
+                selectorPadres,operadorCruce,mutador, seleccionadorSobrevivientes,cantidadIteraciones);
         return instancia;
     }
 
     public static void FinalizacionEvolucion(long tiempoTotalInicio, int iterador, Instancia instancia){
         long tiempoTotalFin = System.currentTimeMillis();
-        long tiempoTotal = tiempoTotalFin - tiempoTotalInicio; // Asegurate de haber declarado tiempoTotalInicio antes del bucle
+        long tiempoTotal = tiempoTotalFin - tiempoTotalInicio; 
         double tiempoPromedioPorGen = (double) tiempoTotal / iterador;
 
-        // 2. Cálculos de resultados sobre la población final
         instancia.getPoblacion().ordenarPorFitnessMenorAMayor();
         Solucion mejorSolucionFinal = instancia.getPoblacion().get(0);
         double mejorCosto = mejorSolucionFinal.getFitness();
 
-        // 3. Cálculo del costo promedio de la última generación
         double sumaCostos = 0;
         for (Solucion s : instancia.getPoblacion().getSoluciones()) {
             sumaCostos += s.getFitness();
         }
         double costoPromedio = sumaCostos / instancia.getPoblacion().getTamañoActual();
 
-        // --- Resumen de Resultados Finales para el Usuario ---
         System.out.println("\n=========================================================");
         System.out.println(" 🏆 EVOLUCIÓN FINALIZADA - RESULTADOS OBTENIDOS 🏆");
         System.out.println("=========================================================");
@@ -168,7 +169,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        // Instanciamos el Scanner para leer el teclado
         Scanner scanner = new Scanner(System.in);
 
         Instancia instancia = CreacionInstancia(scanner);
@@ -181,7 +181,7 @@ public class Main {
         System.out.println("Inicio iteraciones: ");
 
 
-        while (iterador < 5000){
+        while (iterador < instancia.getcantidadIteraciones()){
             iterador++;
             List<Solucion> padres = instancia.seleccionarPadres();
             List<Solucion> hijos = instancia.getHijos(padres);

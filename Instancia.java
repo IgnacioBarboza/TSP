@@ -8,6 +8,7 @@ public class Instancia {
     private int cantidadSoluciones;
     private int[][] costos;
     private Poblacion poblacion;
+    private int cantidadIteraciones;
     private SeleccionadorPadres selectorPadres;
     private OperadorCruce operadorCruce;
     private Mutador mutador;
@@ -16,11 +17,12 @@ public class Instancia {
     private ArrayList<Double> peorFitness;
 
     // --------------------------Constructor-------------------------------
-    public Instancia(int dimensionCostos, int[][] costos, int cantidadSoluciones, SeleccionadorPadres selectorPadres, OperadorCruce operadorCruce, Mutador mutador, SeleccionadorSobrevivientes seleccionadorSobrevivientes) {
+    public Instancia(int dimensionCostos, int[][] costos, int cantidadSoluciones, SeleccionadorPadres selectorPadres, OperadorCruce operadorCruce, Mutador mutador, SeleccionadorSobrevivientes seleccionadorSobrevivientes,int cantidadIteraciones) {
         this.dimensionCostos = dimensionCostos;
         this.cantidadSoluciones = cantidadSoluciones;
         this.costos = costos;
         this.selectorPadres = selectorPadres;
+        this.cantidadIteraciones=cantidadIteraciones;
         this.operadorCruce = operadorCruce;
         this.mutador = mutador;
         this.seleccionadorSobrevivientes = seleccionadorSobrevivientes;
@@ -32,6 +34,10 @@ public class Instancia {
 
     public Poblacion getPoblacion() {
         return poblacion;
+    }
+
+    public int getcantidadIteraciones() {
+        return cantidadIteraciones;
     }
 
     public void setPoblacion(Poblacion poblacion) {
