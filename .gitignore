@@ -4,7 +4,7 @@ bin/
 out/
 target/
 
-# Ignorar configuraciones del IDE (si usás IntelliJ, Eclipse o VS Code)
+# Ignorar configuraciones del IDE
 .idea/
 *.iml
 .classpath
