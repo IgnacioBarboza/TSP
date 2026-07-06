@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
@@ -163,7 +162,6 @@ public class CruceDeArcos implements OperadorCruce{
 
         private void addElemento(Solucion ind1,Solucion ind2,int i){
             List<Integer> camino1=ind1.getCamino();
-            List<Integer> camino2=ind2.getCamino();
             int elemento=camino1.get(i);
             int ady1=ind1.getCiudadAnterior(i);
             int ady2=ind1.getCiudadPosterior(i);
@@ -195,15 +193,5 @@ public class CruceDeArcos implements OperadorCruce{
                     lista[i][4]-=1;
             }
         }
-    }
-    private class Elemento{
-        public Elemento(int ciudad){
-            this.ciudad=ciudad;
-        }
-        int ciudad;
-        boolean doble;
-        Elemento siguiente;
-
-
     }
 }
