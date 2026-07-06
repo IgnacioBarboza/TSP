@@ -12,12 +12,16 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class ControladorArchivos {
+    private static String nombreArchivo = "";
 
+    public static String getNombreArchivo() {
+        return nombreArchivo;
+    }
     public static int[][] inicializarMatriz()  {
         FlatLightLaf.setup();
         Path path=elegirArchivo();
         try (BufferedReader reader = Files.newBufferedReader(path);
-             Stream<String> lines = reader.lines();) {
+            Stream<String> lines = reader.lines();) {
             List<String> renglones = lines.toList();
             return crearMatrizAdyacencias(renglones);
         }catch (Exception ee){
@@ -34,14 +38,15 @@ public class ControladorArchivos {
         File archivo = null;
         if (res == JFileChooser.APPROVE_OPTION) {
             archivo = chooser.getSelectedFile();
+            nombreArchivo = archivo.getName();
             return archivo.toPath();
         } else throw new RuntimeException();
     }
 
     public static void guardarResultados(Instancia instancia,double costoPromedio, double tiempoTotal, double tiempoPromedioPorGen){
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
-        String nombreArchivo = "resultados-" + timestamp + ".txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo))) {
+            writer.write("Problema: " + nombreArchivo + System.lineSeparator());
             writer.write("Configuración utilizada:"+System.lineSeparator());
             writer.write("Operador de selección: "+instancia.getSelectorPadres().getNombre()+System.lineSeparator());
             writer.write("Operador de cruce: "+ instancia.getOperadorCruce().getNombre()+System.lineSeparator());
