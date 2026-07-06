@@ -13,7 +13,7 @@ public class Instancia {
     private Mutador mutador;
     private SeleccionadorSobrevivientes seleccionadorSobrevivientes;
     private ArrayList<Double> mejoresFitness;
-    public ArrayList<Double> peorFitness;
+    private ArrayList<Double> peorFitness;
 
     // --------------------------Constructor-------------------------------
     public Instancia(int dimensionCostos, int[][] costos, int cantidadSoluciones, SeleccionadorPadres selectorPadres, OperadorCruce operadorCruce, Mutador mutador, SeleccionadorSobrevivientes seleccionadorSobrevivientes) {
@@ -67,6 +67,7 @@ public class Instancia {
     }
     public ArrayList<Double> getMejoresFitness(){return mejoresFitness;}
 
+    public ArrayList<Double> getPeorFitness(){return peorFitness;}
 
     public List<Solucion> getHijos(List<Solucion> padres){
         return operadorCruce.generarHijos(padres, cantidadSoluciones, costos);

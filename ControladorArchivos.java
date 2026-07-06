@@ -56,7 +56,7 @@ public class ControladorArchivos {
             for (int i = 0; i < totalIteraciones; i++) {
                 int sig=i+1;
                 double fitness=instancia.getMejoresFitness().get(i);
-                double diferencia=fitness-instancia.peorFitness.get(i);
+                double diferencia=fitness-instancia.getPeorFitness().get(i);
                 writer.write("Mejor fitness en iteración "+sig+": "+fitness+" Diferencia: "+diferencia+"\n");
             }
         } catch (IOException e) {

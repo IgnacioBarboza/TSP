@@ -7,14 +7,14 @@ public class Solucion {
     
     //------------------------------------Variables-----------------------------------------
     private double Fitness;
-    private List<Integer> camino; 
+    private List<Integer> camino;
     private int largoCamino;
     
     //------------------------------------Constructores-----------------------------------------
     
     public Solucion(List<Integer> camino, int[][] costos) {
-        this.camino = new ArrayList<>(camino); 
-        this.largoCamino = this.camino.size(); 
+        this.camino = new ArrayList<>(camino);
+        this.largoCamino = this.camino.size();
         recalcularFitness(costos);
     }
 
@@ -24,7 +24,7 @@ public class Solucion {
         recalcularFitness(costos);
     }
 
-     public Solucion() {}
+    public Solucion() {}
 
     //--------------------------------------Métodos---------------------------------------
     
@@ -33,7 +33,7 @@ public class Solucion {
     }
 
     public double getFitnessInvertido() {
-        return 1.0 / Fitness; // Aseguramos que la división sea con decimales usando 1.0
+        return 1.0 / Fitness;
     }
 
     public List<Integer> getCamino() {
@@ -44,7 +44,7 @@ public class Solucion {
         this.camino = camino;
     }
 
-    public void setFitness(double fitness) { 
+    public void setFitness(double fitness) {
         Fitness = fitness;
     }
 
@@ -70,7 +70,7 @@ public class Solucion {
             this.camino.add(i); 
         }
         
-        Collections.shuffle(this.camino); 
+        Collections.shuffle(this.camino);
     }
 
     public void imprimirCaminoLn(){
