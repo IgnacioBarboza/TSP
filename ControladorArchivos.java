@@ -12,10 +12,10 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class ControladorArchivos {
-    private static String nombreArchivo = "";
+    private static String nombreArchivoATSP = "";
 
     public static String getNombreArchivo() {
-        return nombreArchivo;
+        return nombreArchivoATSP;
     }
     public static int[][] inicializarMatriz()  {
         FlatLightLaf.setup();
@@ -38,15 +38,26 @@ public class ControladorArchivos {
         File archivo = null;
         if (res == JFileChooser.APPROVE_OPTION) {
             archivo = chooser.getSelectedFile();
-            nombreArchivo = archivo.getName();
+            nombreArchivoATSP = archivo.getName();
             return archivo.toPath();
         } else throw new RuntimeException();
     }
 
     public static void guardarResultados(Instancia instancia,double costoPromedio, double tiempoTotal, double tiempoPromedioPorGen){
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo))) {
-            writer.write("Problema: " + nombreArchivo + System.lineSeparator());
+
+        String carpeta = "Experimentos";
+        File directorio = new File(carpeta);
+        if (!directorio.exists()){
+            directorio.mkdir();
+        }
+
+        String nombreArchivo = "resultados-" + timestamp + ".txt";
+
+        File archivoDestino = new File(directorio, nombreArchivo);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoDestino))) {
+            writer.write("Problema: " + nombreArchivoATSP + System.lineSeparator());
             writer.write("Configuración utilizada:"+System.lineSeparator());
             writer.write("Operador de selección: "+instancia.getSelectorPadres().getNombre()+System.lineSeparator());
             writer.write("Operador de cruce: "+ instancia.getOperadorCruce().getNombre()+System.lineSeparator());
@@ -68,7 +79,7 @@ public class ControladorArchivos {
             System.err.println("Error: " + e.getMessage());
         }
 
-        System.out.println("Resultados guardados en: " + nombreArchivo);
+        System.out.println("Resultados guardados en: " + archivoDestino.getAbsolutePath());
     }
 
     public static int[][] crearMatrizAdyacencias(List<String> valores) throws Exception {
