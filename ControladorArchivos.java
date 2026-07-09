@@ -63,6 +63,7 @@ public class ControladorArchivos {
             writer.write("Operador de cruce: "+ instancia.getOperadorCruce().getNombre()+System.lineSeparator());
             writer.write("Operador de mutación: " + instancia.getMutador().getNombre()+System.lineSeparator());
             writer.write("Selector de sobrevivientes: " + instancia.getSeleccionadorSobrevivientes().getNombre()+System.lineSeparator());
+            writer.write("Cantidad de iteraciones: "+instancia.getcantidadIteraciones()+"\n");
             writer.write("Fitness mejor solución:    " + instancia.getPoblacion().getSoluciones().get(0).getFitness()+System.lineSeparator());
             writer.write("Costo promedio (Población): " + String.format("%.2f", costoPromedio)+System.lineSeparator());
             writer.write("Tiempo total de ejecución: " + tiempoTotal + " ms"+System.lineSeparator());

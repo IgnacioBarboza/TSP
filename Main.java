@@ -23,7 +23,9 @@ public class Main {
         System.out.println("\nElija el método de Selección de Sobrevivientes:");
         System.out.println("1 : Selección por Reemplazo");
         System.out.println("2 : Steady State");
-        System.out.print("▶ Ingrese su opción (1 o 2): ");
+        System.out.println("3 : Selección por ruleta");
+        System.out.println("4 : Selección por torneo");
+        System.out.print("▶ Ingrese su opción ( 1 , 2 , 3 , 4 ): ");
         
         int opcion = scanner.nextInt();
 
@@ -33,8 +35,12 @@ public class Main {
             System.out.println("Indique la cantidad de soluciones de reemplazo: ");
             int n = scanner.nextInt();
             return new SeleccionadorSteadyState(n);
-        } else {
+        } else if (opcion == 3){
             return new SeleccionSobrevivientesRuleta();
+        } else{
+            System.out.println("Indique el tamaño del torneo: ");
+            int n = scanner.nextInt();
+            return new SeleccionSobrevivientesTorneo(n);
         }
     }
 
@@ -51,7 +57,7 @@ public class Main {
         if (opcion == 1) {
             return new MutacionPorInversion(prob);
         } else {
-            System.out.print("Elija la cantidad de intercambios por mutación");
+            System.out.print("Elija la cantidad de intercambios por mutación: ");
             int cantIntercambios=scanner.nextInt();
             return new MutacionPorIntercambio(cantIntercambios,prob);
         }
@@ -180,8 +186,8 @@ public class Main {
         int iterador = 0;
         System.out.println("Inicio iteraciones: ");
 
-
-        while (iterador < instancia.getcantidadIteraciones()){
+        boolean encontro=false;
+        while ((iterador < instancia.getcantidadIteraciones())&&!encontro){
             iterador++;
             List<Solucion> padres = instancia.seleccionarPadres();
             List<Solucion> hijos = instancia.getHijos(padres);
@@ -191,8 +197,9 @@ public class Main {
             List<Solucion> sobrevivientes = instancia.seleccionarSobrevivientes(padres, hijos);
             instancia.setearPoblacion(sobrevivientes);
             instancia.ordenarPorFitnessMenorAMayor();
+            if ((instancia.getMejoresFitness().get(iterador-1))<5622)
+                encontro=true;
         }
-
         scanner.close();
         
         FinalizacionEvolucion(tiempoTotalInicio, iterador, instancia);
