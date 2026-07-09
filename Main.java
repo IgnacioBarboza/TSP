@@ -100,7 +100,7 @@ public class Main {
         System.out.print("▶ 2. Ingrese el tamaño de la población (ej. 100): ");
         int cantidadSoluciones = scanner.nextInt();
         
-        // 3. Tamaño de la población
+        // 3. Cantidad de iteraciones
         System.out.print("▶ 3. Ingrese la cantidad de iteraciones del experimento (ej. 500 o 1000): ");
         int cantidadIteraciones = scanner.nextInt();
         
@@ -197,8 +197,8 @@ public class Main {
             List<Solucion> sobrevivientes = instancia.seleccionarSobrevivientes(padres, hijos);
             instancia.setearPoblacion(sobrevivientes);
             instancia.ordenarPorFitnessMenorAMayor();
-            if ((instancia.getMejoresFitness().get(iterador-1))<5622)
-                encontro=true;
+            //if ((instancia.getMejoresFitness().get(iterador-1))<5622)
+            //    encontro=true;
         }
         scanner.close();
         
