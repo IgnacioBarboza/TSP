@@ -6,7 +6,7 @@ public class Main {
     private static SeleccionadorPadres elegirSelectorPadres(Scanner scanner) {
         System.out.println("1 : Selección por Torneo");
         System.out.println("2 : Selección por Ruleta");
-        System.out.print("▶ Ingrese su opción (1 o 2): ");
+        System.out.print(" Ingrese su opción (1 o 2): ");
         
         int opcion = scanner.nextInt();
 
@@ -25,7 +25,7 @@ public class Main {
         System.out.println("2 : Steady State");
         System.out.println("3 : Selección por ruleta");
         System.out.println("4 : Selección por torneo");
-        System.out.print("▶ Ingrese su opción ( 1 , 2 , 3 , 4 ): ");
+        System.out.print(" Ingrese su opción ( 1 , 2 , 3 , 4 ): ");
         
         int opcion = scanner.nextInt();
 
@@ -48,7 +48,7 @@ public class Main {
         System.out.println("\nElija el método de Mutación:");
         System.out.println("1 : por Inversión");
         System.out.println("2 : por Intercambio");
-        System.out.print("▶ Ingrese su opción (1): ");
+        System.out.print(" Ingrese su opción (1): ");
         int opcion = scanner.nextInt();
 
         System.out.println("\nElija las probabilidades de mutación:");
@@ -94,14 +94,14 @@ public class Main {
         int tamanio=costos.length;
 
         // 1. Tamaño del problema (ciudades)
-        System.out.println("▶ 1. Cantidad total de ciudades del problema: " + tamanio);
+        System.out.println(" 1. Cantidad total de ciudades del problema: " + tamanio);
 
         // 2. Tamaño de la población
-        System.out.print("▶ 2. Ingrese el tamaño de la población (ej. 100): ");
+        System.out.print(" 2. Ingrese el tamaño de la población (ej. 100): ");
         int cantidadSoluciones = scanner.nextInt();
         
         // 3. Cantidad de iteraciones
-        System.out.print("▶ 3. Ingrese la cantidad de iteraciones del experimento (ej. 500 o 1000): ");
+        System.out.print(" 3. Ingrese la cantidad de iteraciones del experimento (ej. 500 o 1000): ");
         int cantidadIteraciones = scanner.nextInt();
         
         // 4. Selección de padres
