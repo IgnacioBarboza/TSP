@@ -57,19 +57,26 @@ public class ControladorArchivos {
         File archivoDestino = new File(directorio, nombreArchivo);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoDestino))) {
+            int totalIteraciones=instancia.getMejoresFitness().size();
             writer.write("Problema: " + nombreArchivoATSP + System.lineSeparator());
             writer.write("Configuración utilizada:"+System.lineSeparator());
             writer.write("Operador de selección: "+instancia.getSelectorPadres().getNombre()+System.lineSeparator());
             writer.write("Operador de cruce: "+ instancia.getOperadorCruce().getNombre()+System.lineSeparator());
             writer.write("Operador de mutación: " + instancia.getMutador().getNombre()+System.lineSeparator());
             writer.write("Selector de sobrevivientes: " + instancia.getSeleccionadorSobrevivientes().getNombre()+System.lineSeparator());
-            writer.write("Cantidad de iteraciones: "+instancia.getcantidadIteraciones()+"\n");
-            writer.write("Fitness mejor solución:    " + instancia.getPoblacion().getSoluciones().get(0).getFitness()+System.lineSeparator());
+            writer.write("Cantidad de iteraciones: "+totalIteraciones+"\n\n");
+            writer.write("Mejor solución:\n");
+            writer.write("  Fitness:    " + instancia.getPoblacion().getSoluciones().get(0).getFitness()+System.lineSeparator());
+            List<Integer> solucion=instancia.getPoblacion().getSoluciones().get(0).getCamino();
+            String camino=solucion.getFirst().toString();
+            for (int i = 1; i < solucion.size(); i++) {
+                camino+=" - "+solucion.get(i).toString();
+            }
+            writer.write("  Camino: "+camino+"\n\n");
             writer.write("Costo promedio (Población): " + String.format("%.2f", costoPromedio)+System.lineSeparator());
             writer.write("Tiempo total de ejecución: " + tiempoTotal + " ms"+System.lineSeparator());
             writer.write("Tiempo promedio por generación: " + String.format("%.2f", tiempoPromedioPorGen) + " ms"+System.lineSeparator());
             writer.write("\nEvolución del Fitness en el tiempo");
-            int totalIteraciones=instancia.getMejoresFitness().size();
             for (int i = 0; i < totalIteraciones; i++) {
                 int sig=i+1;
                 double fitness=instancia.getMejoresFitness().get(i);
