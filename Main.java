@@ -80,7 +80,7 @@ public class Main {
 
     private static Instancia CreacionInstancia(Scanner scanner) {
         System.out.println("=========================================================");
-        System.out.println(" 🧬 BIENVENIDO AL ALGORITMO EVOLUTIVO - EL VIAJANTE 🧬 ");
+        System.out.println("  BIENVENIDO AL ALGORITMO EVOLUTIVO - EL VIAJANTE  ");
         System.out.println("=========================================================\n");
         
         System.out.println("Por favor, configuremos los parámetros iniciales:\n");
@@ -150,21 +150,21 @@ public class Main {
         double costoPromedio = sumaCostos / instancia.getPoblacion().getTamañoActual();
 
         System.out.println("\n=========================================================");
-        System.out.println(" 🏆 EVOLUCIÓN FINALIZADA - RESULTADOS OBTENIDOS 🏆");
+        System.out.println("  EVOLUCIÓN FINALIZADA - RESULTADOS OBTENIDOS ");
         System.out.println("=========================================================");
-        System.out.println(" ⚙️  CONFIGURACIÓN UTILIZADA:");
+        System.out.println("   CONFIGURACIÓN UTILIZADA:");
         System.out.println("     Selección: " + instancia.getSelectorPadres().getNombre());
         System.out.println("     Cruce:     " + instancia.getOperadorCruce().getNombre());
         System.out.println("     Mutación:  " + instancia.getMutador().getNombre());
         System.out.println("     Reemplazo: " + instancia.getSeleccionadorSobrevivientes().getNombre());
         System.out.println("---------------------------------------------------------");
-        System.out.println(" 🥇 Mejor Costo (Distancia):    " + mejorCosto);
-        System.out.println(" 📊 Costo Promedio (Población): " + String.format("%.2f", costoPromedio));
-        System.out.println(" ⏱️  Tiempo Total de Ejecución: " + tiempoTotal + " ms");
-        System.out.println(" ⏱️  Tiempo Promedio x Gen:     " + String.format("%.2f", tiempoPromedioPorGen) + " ms");
+        System.out.println("  Mejor Costo (Distancia):    " + mejorCosto);
+        System.out.println("  Costo Promedio (Población): " + String.format("%.2f", costoPromedio));
+        System.out.println("   Tiempo Total de Ejecución: " + tiempoTotal + " ms");
+        System.out.println("   Tiempo Promedio x Gen:     " + String.format("%.2f", tiempoPromedioPorGen) + " ms");
         System.out.println("=========================================================\n");
         
-        System.out.print("▶ Ruta del mejor viaje encontrado: ");
+        System.out.print(" Ruta del mejor viaje encontrado: ");
         mejorSolucionFinal.imprimirCaminoLn();
         ControladorArchivos.guardarResultados(instancia,costoPromedio,tiempoTotal,tiempoPromedioPorGen);
         for (int i = 0; i < instancia.getcantidadSoluciones(); i++) {
@@ -186,8 +186,7 @@ public class Main {
         int iterador = 0;
         System.out.println("Inicio iteraciones: ");
 
-        boolean encontro=false;
-        while ((iterador < instancia.getcantidadIteraciones())&&!encontro){
+        while (iterador < instancia.getcantidadIteraciones()){
             iterador++;
             List<Solucion> padres = instancia.seleccionarPadres();
             List<Solucion> hijos = instancia.getHijos(padres);
@@ -197,8 +196,6 @@ public class Main {
             List<Solucion> sobrevivientes = instancia.seleccionarSobrevivientes(padres, hijos);
             instancia.setearPoblacion(sobrevivientes);
             instancia.ordenarPorFitnessMenorAMayor();
-            //if ((instancia.getMejoresFitness().get(iterador-1))<5622)
-            //    encontro=true;
         }
         scanner.close();
         

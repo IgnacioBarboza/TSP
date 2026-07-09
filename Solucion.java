@@ -75,7 +75,6 @@ public class Solucion {
 
     public void imprimirCaminoLn(){
         for(int i = 0; i < largoCamino; i++){
-            // Usamos .get()
             System.out.print(camino.get(i) + " ");
         }
         System.out.println();

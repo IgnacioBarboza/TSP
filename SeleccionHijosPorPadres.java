@@ -10,7 +10,6 @@ public class SeleccionHijosPorPadres implements SeleccionadorSobrevivientes {
 
     @Override
     public List<Solucion> seleccionar(List<Solucion> poblacionActual, List<Solucion> hijosGenerados) {
-        System.out.println("Size: "+hijosGenerados.size());
         return new ArrayList<>(hijosGenerados);
     }
 }
