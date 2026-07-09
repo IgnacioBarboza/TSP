@@ -1,9 +1,0 @@
-Configuración utilizada:
-Operador de selección: Por Torneo con tamaño de torneo: 5 individuos
-Operador de cruce: Cruce de arcos
-Operador de mutación: Mutación por Inversión
-Selector de sobrevivientes: Steady State con reemplazo de 20
-Fitness mejor solución:    39.0
-Costo promedio (Población): 39,00
-Tiempo total de ejecución: 280.0 ms
-Tiempo promedio por generación: 0,28 ms

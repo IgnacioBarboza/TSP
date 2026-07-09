@@ -1,9 +1,0 @@
-Configuración utilizada:
-Operador de selección: Por Ruleta
-Operador de cruce: Cruce de arcos
-Operador de mutación: Mutación por Inversión
-Selector de sobrevivientes: Steady State con reemplazo de 25
-Fitness mejor solución:    55.0
-Costo promedio (Población): 39,90
-Tiempo total de ejecución: 235.0 ms
-Tiempo promedio por generación: 0,24 ms
